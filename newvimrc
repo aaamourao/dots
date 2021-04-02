@@ -5,16 +5,9 @@ endif
 let mapleader = ","
 
 set term=screen-256color
-" pathogen plugin autoloader
-execute pathogen#infect()
 
 syntax on
 set background=dark
-
-filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
-set expandtab
 
 set number
 
@@ -30,8 +23,6 @@ autocmd BufWinLeave * call clearmatches()
 set colorcolumn=80
 
 nmap <F9> :TagbarToggle<CR>
-
-set nocp bs=2 ts=2 sw=2 et ai si cin hls is ic scs nu sta sc sr ar aw
 
 set ww=<,>,b,s,[,] mouse=a bg=dark fen fdm=marker
 set completeopt=menu,menuone
@@ -146,6 +137,8 @@ let g:airline_powerline_fonts=1
 Plug 'airblade/vim-gitgutter'
 
 Plug 'dense-analysis/ale'
+
+Plug 'rhysd/vim-clang-format'
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
@@ -162,3 +155,19 @@ colorscheme gruvbox
 set cino=N-s,L0,:0,l1,i2s,(0
 
 set clipboard=unnamedplus
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+let g:clang_format#code_style = 'mozilla'
+nmap <F10> :ClangFormat<CR>
+nmap <F7> :ClangFormatAutoToggle<CR>
+
+set nocp bs=2 ts=2 sw=2 et ai si cin hls is ic scs nu sta sc sr ar aw
+
+filetype plugin indent on
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set nosmarttab
